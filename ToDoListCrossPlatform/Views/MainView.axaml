@@ -6,11 +6,43 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ToDoListCrossPlatform.Views.MainView"
              x:DataType="vm:MainViewModel">
+    
   <Design.DataContext>
-    <!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:MainViewModel />
-  </Design.DataContext>
-
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-</UserControl>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainViewModel/>
+    </Design.DataContext>
+    
+    <!-- We give a name to the root grid to get access later -->
+    <Grid RowDefinitions="Auto, *, Auto" x:Name="Root">
+        
+        <!-- Our title text block -->
+        <TextBlock Text="My TaDo-List"/>
+        
+        <ScrollViewer Grid.Row="1">
+            <!-- Items Control to show all added ToDoItems -->
+            <!-- It needs to be placed inside a ScrollViewr because other than a ListBox it has none of its own -->
+            <ItemsControl ItemsSource="{Binding ToDoItems}">
+                <ItemsControl.ItemTemplate>
+                    
+                <DataTemplate DataType="vm:ToDoItemViewModel">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <CheckBox Content="{Binding Content}" IsChecked="{Binding IsChecked}"></CheckBox>
+                        <!--  Note how we use the Root-Grid to get the MainViewModel here. As we use compiled bindings we have to cast the DataContext  -->                       
+                        <Button Command="{Binding #Root.((vm:MainViewModel)DataContext).RemoveItemCommand}" CommandParameter="{Binding .}" Grid.Column="1">
+                            DELETE DELETE DELETE </Button>
+                    </Grid>
+                </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <!-- TextBox used to add a new Todo Item -->
+        <TextBox Grid.Row="2" Text="{Binding NewItemContent}" Watermark="Add a new item dude">
+            <TextBox.InnerRightContent>
+                <Button Command="{Binding AddItemCommand}">Add</Button>
+            </TextBox.InnerRightContent>
+            <TextBox.KeyBindings>
+                <KeyBinding Command="{Binding AddItemCommand}"></KeyBinding>
+            </TextBox.KeyBindings>
+        </TextBox>
+    </Grid></UserControl>
