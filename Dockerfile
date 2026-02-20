@@ -28,4 +28,4 @@ RUN dotnet publish -c release -o /app
 # final stage/image
 FROM nginx
 WORKDIR /app
-COPY --from=build /app /var/share/nginx/html
+COPY --from=build /app /usr/share/nginx/html
