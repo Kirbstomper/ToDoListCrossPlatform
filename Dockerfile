@@ -1,10 +1,13 @@
 # https://hub.docker.com/_/microsoft-dotnet
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /source
-RUN apt-get install -y python3-pip python3-dev \
-  && cd /usr/local/bin \
-  && ln -s /usr/bin/python3 python \
-  && pip3 install --upgrade pip
+# Install Python
+RUN apt-get update \
+    && apt-get remove --purge -y python3.7
+RUN apt-get install -y python3.6 \
+    && ln -s /usr/bin/python3.6 /usr/bin/python3
+RUN python3 -V
+
 
 
 # copy csproj and restore as distinct layers
