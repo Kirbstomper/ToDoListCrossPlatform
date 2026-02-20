@@ -2,11 +2,8 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /source
 # Install Python
-RUN apt-get update \
-    && apt-get remove --purge -y python3.7
-RUN apt-get install -y python3.6 \
-    && ln -s /usr/bin/python3.6 /usr/bin/python3
-RUN python3 -V
+RUN apt-get update
+RUN apt-get install -y python
 
 
 
