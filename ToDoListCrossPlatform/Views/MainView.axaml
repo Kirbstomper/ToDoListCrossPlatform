@@ -42,7 +42,7 @@
                 <Button Command="{Binding AddItemCommand}">Add</Button>
             </TextBox.InnerRightContent>
             <TextBox.KeyBindings>
-                <KeyBinding Command="{Binding AddItemCommand}"></KeyBinding>
+                <KeyBinding Command="{Binding AddItemCommand}" Gesture="Enter"></KeyBinding>
             </TextBox.KeyBindings>
         </TextBox>
     </Grid></UserControl>
