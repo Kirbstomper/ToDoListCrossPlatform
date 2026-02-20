@@ -12,7 +12,7 @@ COPY ToDoListCrossPlatform.iOS/*.csproj ./ToDoListCrossPlatform.iOS/
 COPY ToDoListCrossPlatform.Desktop/*.csproj ./ToDoListCrossPlatform.Desktop/
 COPY ToDoListCrossPlatform.Android/*.csproj ./ToDoListCrossPlatform.Android/
 COPY ToDoListCrossPlatform/*.csproj ./ToDoListCrossPlatform/
-run dotnet workload restore ./ToDoListCrossPlatform.Browser/ToDoListCrossPlatform.Browser.csproj
+run dotnet workload restore
 COPY Directory.Packages.props .
 
 RUN dotnet restore
