@@ -26,7 +26,6 @@ WORKDIR /source/ToDoListCrossPlatform.Browser
 RUN dotnet publish -c release -o /app
 
 # final stage/image
-FROM mcr.microsoft.com/dotnet/aspnet:10.0
+FROM nginx
 WORKDIR /app
-COPY --from=build /app ./
-ENTRYPOINT ["dotnet", "ToDoListCrossPlatform.Browser.dll"]
+COPY --from=build /app /var/share/nginx/html
