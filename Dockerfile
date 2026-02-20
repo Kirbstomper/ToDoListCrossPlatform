@@ -8,14 +8,14 @@ COPY *.sln .
 
 
 COPY ToDoListCrossPlatform.Browser/*.csproj ./ToDoListCrossPlatform.Browser/
-#COPY ToDoListCrossPlatform.iOS/*.csproj ./ToDoListCrossPlatform.iOS/
-#COPY ToDoListCrossPlatform.Desktop/*.csproj ./ToDoListCrossPlatform.Desktop/
-#COPY ToDoListCrossPlatform.Android/*.csproj ./ToDoListCrossPlatform.Android/
+COPY ToDoListCrossPlatform.iOS/*.csproj ./ToDoListCrossPlatform.iOS/
+COPY ToDoListCrossPlatform.Desktop/*.csproj ./ToDoListCrossPlatform.Desktop/
+COPY ToDoListCrossPlatform.Android/*.csproj ./ToDoListCrossPlatform.Android/
 COPY ToDoListCrossPlatform/*.csproj ./ToDoListCrossPlatform/
 run dotnet workload restore ./ToDoListCrossPlatform.Browser/ToDoListCrossPlatform.Browser.csproj
 COPY Directory.Packages.props .
 
-RUN dotnet restore ToDoListCrossPlatform.Browser
+RUN dotnet restore
 
 
 RUN echo "HI"
