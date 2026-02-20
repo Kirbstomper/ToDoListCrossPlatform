@@ -15,9 +15,6 @@ COPY ToDoListCrossPlatform/*.csproj ./ToDoListCrossPlatform/
 run dotnet workload restore
 COPY Directory.Packages.props .
 
-RUN dotnet restore
-
-
 RUN echo "HI"
 # copy everything else and build app
 COPY ToDoListCrossPlatform/. ./ToDoListCrossPlatform/
