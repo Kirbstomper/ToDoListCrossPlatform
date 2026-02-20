@@ -17,7 +17,7 @@
     <Grid RowDefinitions="Auto, *, Auto" x:Name="Root">
         
         <!-- Our title text block -->
-        <TextBlock Text="My TaDo-List"/>
+        <TextBlock Classes="h1" Text="My TaDo-List"/>
         
         <ScrollViewer Grid.Row="1">
             <!-- Items Control to show all added ToDoItems -->
@@ -30,7 +30,8 @@
                         <CheckBox Content="{Binding Content}" IsChecked="{Binding IsChecked}"></CheckBox>
                         <!--  Note how we use the Root-Grid to get the MainViewModel here. As we use compiled bindings we have to cast the DataContext  -->                       
                         <Button Command="{Binding #Root.((vm:MainViewModel)DataContext).RemoveItemCommand}" CommandParameter="{Binding .}" Grid.Column="1">
-                            DELETE DELETE DELETE </Button>
+                            <PathIcon Data="{DynamicResource DeleteIconData}" Foreground="Red" />
+                        </Button>
                     </Grid>
                 </DataTemplate>
                 </ItemsControl.ItemTemplate>
@@ -39,7 +40,9 @@
         <!-- TextBox used to add a new Todo Item -->
         <TextBox Grid.Row="2" Text="{Binding NewItemContent}" Watermark="Add a new item dude">
             <TextBox.InnerRightContent>
-                <Button Command="{Binding AddItemCommand}">Add</Button>
+                <Button Command="{Binding AddItemCommand}">
+                    <PathIcon Data="{DynamicResource AcceptIconData}" Foreground="Green" />
+                </Button>
             </TextBox.InnerRightContent>
             <TextBox.KeyBindings>
                 <KeyBinding Command="{Binding AddItemCommand}" Gesture="Enter"></KeyBinding>
