@@ -9,7 +9,7 @@ run dotnet workload restore
 RUN dotnet restore
 
 # copy everything else and build app
-COPY ToDoListCrossPlatform.Browser/. ./ToDoListCrossPlatform.Browser/
+COPY ToDoListCrossPlatform.Browser/.* ./ToDoListCrossPlatform.Browser/
 WORKDIR /source/ToDoListCrossPlatform.Browser
 RUN dotnet publish -c release -o /app --no-restore
 
